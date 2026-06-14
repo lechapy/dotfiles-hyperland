@@ -1,0 +1,51 @@
+
+
+
+l
+
+edeedede
+ss
+# This config is a STUB! This should never be generated.xit# Use the default lua config from https://github.com/hyprwm/Hyprland/blob/main/example/hyprland.lua
+
+monitor=,preferred,auto,1
+
+
+$mainMod = SUPER
+$terminal = kitty
+$fileManager = dolphin
+$menu = rofi -show drun
+
+bind = $mainMod, Q, exec, $terminal
+bind = $mainMod, C, killactive,
+bind = $mainMod, M, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit
+bind = $mainMod, E, exec, $fileManager
+bind = $mainMod, V, togglefloating,
+bind = $mainMod, R, exec, $menu
+
+bind = $mainMod, left, movefocus, l
+bind = $mainMod, right, movefocus, r
+bind = $mainMod, up, movefocus, u
+bind = $mainMod, down, movefocus, d
+
+bind = $mainMod, h, workspace, 1
+bind = $mainMod, j, workspace, 2
+bind = $mainMod, k, workspace, 3
+bind = $mainMod, l, workspace, 4
+
+bind = $mainMod SHIFT, h, movetoworkspace, 1
+bind = $mainMod SHIFT, j, movetoworkspace, 2
+bind = $mainMod SHIFT, k, movetoworkspace, 3
+bind = $mainMod SHIFT, l, movetoworkspace, 4
+
+exec-once = waybar
+exec-once = hyprpaper
+
+
+
+
+
+
+
+
+
+

@@ -23,9 +23,15 @@ window#waybar {
     color: #11111b;
 }
 
-#clock, #battery, #cpu, #memory, #disk, #temperature, #network, #pulseaudio, #tray {
+/* Añadidos bluetooth y custom-power al bloque gris oscuro */
+#clock, #battery, #bluetooth, #cpu, #memory, #disk, #temperature, #network, #pulseaudio, #custom-power, #tray {
     padding: 0 10px;
     margin: 4px 4px;
     background-color: #313244;
     color: #cdd6f4;
+}
+
+#custom-power {
+    color: #f38ba8; /* El rojo de Catppuccin Mocha */
+    font-size: 14px;
 }

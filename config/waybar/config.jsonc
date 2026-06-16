@@ -1,103 +1,45 @@
 {
-  "layer": "top",
-  "position": "top",
-  "height": 34,
-  "spacing": 10,
-  
-  "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/window"
-  ],
-  
-  "modules-center": [
-    "clock"
-  ],
-  
-  "modules-right": [
-    "custom/updates",
-    "custom/clipboard",
-    "bluetooth",
-    "cpu",
-    "temperature",
-    "custom/gpu",
-    "memory",
-    "power-profiles-daemon",
-    "battery",
-    "tray"
-  ],
+    "layer": "top",
+    "position": "top",
+    "height": 34,
+    "spacing": 10,
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/power", "bluetooth", "network", "cpu", "memory", "pulseaudio", "tray"],
 
-  "hyprland/workspaces": {
-    "format": "{name}",
-    "on-click": "activate"
-  },
-
-  "clock": {
-    "format": " {:%H:%M |  %d/%m/%Y}"
-  },
-
-  "custom/updates": {
-    "format": " {}",
-    "exec": "yay -Qu | wc -l",
-    "interval": 3600,
-    "tooltip": false
-  },
-
-  "custom/clipboard": {
-    "format": "",
-    "on-click": "cliphist list | rofi -dmenu | cliphist decode | wl-copy",
-    "tooltip": false
-  },
-
-
- "bluetooth": {
-    "format": "",
-    "format-disabled": "",
-    "format-connected": " {device_alias}",
-    "on-click": "blueman-manager",
-    "tooltip": true,
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
-},
-
-  "cpu": {
-    "format": " {usage}%",
-    "interval": 2
-  },
-
-  "temperature": {
-    "format": " {temperatureC}°C"
-  },
-
-  "custom/gpu": {
-    "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,noheader,nounits | awk '{print \"󰢮 \" $1 \"% |  \" $2 \"°C\"}'",
-    "format": "{}",
-    "interval": 2
-  },
-
-  "memory": {
-    "format": " {}%",
-    "interval": 2
-  },
-
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Perfil actual: {profile}\nDriver: {driver}",
-    "tooltip": true,
-    "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": ""
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate"
+    },
+    "clock": {
+        "format": "{:%H:%M | %d/%m/%Y}"
+    },
+    "cpu": {
+        "format": "CPU: {usage}%",
+        "interval": 2
+    },
+    "memory": {
+        "format": "RAM: {}%",
+        "interval": 2
+    },
+    "network": {
+        "format-wifi": "WIFI: {essid}",
+        "format-ethernet": "ETH",
+        "format-disconnected": "Sin red",
+        "on-click": "nm-connection-editor"
+    },
+    "bluetooth": {
+        "format": "BT: {status}",
+        "format-connected": "BT: {num_connections}",
+        "format-disabled": "BT: Off",
+        "on-click": "blueman-manager"
+    },
+    "pulseaudio": {
+        "format": "VOL: {volume}%",
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format": "⏻",
+        "on-click": "systemctl poweroff"
     }
-  },
-
-  "battery": {
-    "format": "  {capacity}%",
-    "interval": 30
-  },
-
-  "tray": {
-    "spacing": 10
-  }
 }

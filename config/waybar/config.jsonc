@@ -5,41 +5,77 @@
     "spacing": 10,
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/power", "bluetooth", "network", "cpu", "memory", "pulseaudio", "tray"],
-
+    "modules-right": ["custom/updates", "custom/power_profile", "network", "cpu", "temperature", "custom/gpu", "memory", "pulseaudio", "bluetooth", "tray"],
+    
     "hyprland/workspaces": {
         "format": "{name}",
         "on-click": "activate"
     },
+    
     "clock": {
-        "format": "{:%H:%M | %d/%m/%Y}"
+        "format": "󰸗 {:%H:%M | %d/%m/%Y}"
     },
+    
     "cpu": {
-        "format": "CPU: {usage}%",
+        "format": " {usage}%",
         "interval": 2
     },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "({temperatureC}°C)",
+        "interval": 2
+    },
+    
+    "custom/gpu": {
+        "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,noheader,nounits | awk -F', ' '{print \"󰢮 \" $1 \"% (\" $2 \"°C)\"}'",
+        "interval": 2,
+        "format": "{}"
+    },
+    
     "memory": {
-        "format": "RAM: {}%",
+        "format": " {percentage}%",
         "interval": 2
     },
+    
     "network": {
-        "format-wifi": "WIFI: {essid}",
-        "format-ethernet": "ETH",
-        "format-disconnected": "Sin red",
+        "format-wifi": "  {essid}",
+        "format-ethernet": "󰈀 ETH",
+        "format-disconnected": "󰖪 Sin red",
         "on-click": "nm-connection-editor"
     },
+    
     "bluetooth": {
-        "format": "BT: {status}",
-        "format-connected": "BT: {num_connections}",
-        "format-disabled": "BT: Off",
+        "format": " {status}",
+        "format-connected": " {num_connections}",
+        "format-disabled": "󰂲 Off",
         "on-click": "blueman-manager"
     },
+    
     "pulseaudio": {
-        "format": "VOL: {volume}%",
+        "format": "󰕾 {volume}%",
         "on-click": "pavucontrol"
     },
-    "custom/power": {
-        "format": "⏻",
-        "on-click": "systemctl poweroff"
+    
+    "custom/updates": {
+        "exec": "echo \"$(checkupdates | wc -l) + $(yay -Qum | wc -l)\" | bc",
+        "interval": 300,
+        "format": "󰚰 {}",
+        "tooltip": true
+    },
+    
+    "custom/power_profile": {
+        "exec": "powerprofilesctl get",
+        "interval": 3,
+        "format": " {}",
+        "on-click": "powerprofilesctl set performance",
+        "on-click-right": "powerprofilesctl set power-saver",
+        "on-click-middle": "powerprofilesctl set balanced",
+        "tooltip": true
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
     }
 }

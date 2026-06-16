@@ -5,7 +5,7 @@
     "spacing": 10,
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["custom/updates", "custom/power_profile", "network", "cpu", "temperature", "custom/gpu", "memory", "pulseaudio", "bluetooth", "tray", "custom/power"],
+    "modules-right": ["custom/updates", "custom/power_profile", "battery", "network", "cpu", "temperature", "custom/gpu", "memory", "pulseaudio", "bluetooth", "tray", "custom/power"],
     
     "hyprland/workspaces": {
         "format": "{name}",
@@ -55,6 +55,18 @@
     "pulseaudio": {
         "format": "󰕾 {volume}%",
         "on-click": "pavucontrol"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""]
     },
     
     "custom/updates": {

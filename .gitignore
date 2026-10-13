@@ -1,9 +1,0 @@
-# Ignorar directorios de caché y basura
-.cache/
-logs/
-.DS_Store
-*.swp
-*~
-# Si tu IDE crea carpetas, ignorarlas también
-.vscode/
-.idea/
